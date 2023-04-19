@@ -118,5 +118,34 @@ const data = [
 
 
 function articleMaker(artObj) {
-  
+  const articleDiv = document.createElement('div');
+  articleDiv.classList.add('article');
+  const h2TagTitle = document.createElement('h2');
+  articleDiv.appendChild(h2TagTitle);
+  h2TagTitle.textContent = artObj.title;
+  const pTagDate = document.createElement('p');
+  pTagDate.classList.add('date');
+  articleDiv.appendChild(pTagDate);
+  pTagDate.textContent = artObj.date;
+  const para1 = document.createElement('p');
+  articleDiv.appendChild(para1);
+  para1.textContent = artObj.firstParagraph;
+  const para2 = document.createElement('p');
+  articleDiv.appendChild(para2);
+  para2.textContent = artObj.secondParagraph;
+  const para3 = document.createElement('p');
+  articleDiv.appendChild(para3);
+  para3.textContent = artObj.thirdParagraph;
+  const spanTag = document.createElement('span');
+  spanTag.classList.add('expandButton');
+  articleDiv.appendChild(spanTag);
+  spanTag.textContent = '+';
+  spanTag.addEventListener('click', () => {
+    articleDiv.classList.toggle('article-open');
+  })
+  return articleDiv;
 }
+
+data.forEach((article) => {
+  document.querySelector('div.articles').appendChild(articleMaker(article));
+})
